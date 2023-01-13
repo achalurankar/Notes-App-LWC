@@ -3,18 +3,14 @@ import { LightningElement, track } from 'lwc';
 import getNotes from '@salesforce/apex/NoteManager.getNotes';
 import manageNote from '@salesforce/apex/NoteManager.manageNote';
 
-import { log } from 'c/utils';
-import { subscribe, onError } from 'lightning/empApi';
+import Utils from 'c/utils';
 
 export default class Notes extends LightningElement {
 
     @track notes;
-    channelName = '/event/Note_Event__e';
 
     connectedCallback(){
         this.loadNotes();
-        this.subscribeForNoteUpdates();
-        this.registerErrorListener();
     }
 
     loadNotes() {
@@ -24,7 +20,7 @@ export default class Notes extends LightningElement {
                 // log(result, true);
             })
             .catch(error => {
-                log(error, true);
+                Utils.log(error, true);
             })
     }
 
@@ -52,31 +48,7 @@ export default class Notes extends LightningElement {
                 // log(result, true);
             })
             .catch(error => {
-                log(error, true);
+                Utils.log(error, true);
             });
-    }
-
-    subscribeForNoteUpdates() {
-        
-        // Callback invoked whenever a new event message is received
-        const messageCallback = (response) => {
-            console.log('New message received: ', JSON.stringify(response));
-            this.loadNotes();
-            // Response contains the payload of the new message received
-        };
-        subscribe(this.channelName, -1, messageCallback).then((response) => {
-            console.log(
-                'Subscription request sent to: ',
-                JSON.stringify(response.channel)
-            );
-        });
-    }
-
-    registerErrorListener() {
-        // Invoke onError empApi method
-        onError((error) => {
-            console.log('Received error from server: ', JSON.stringify(error));
-            // Error contains the server-side error
-        });
     }
 }
