@@ -1,7 +1,7 @@
 <template>
     <div class="list">
         <div class="form">
-            <input class="input">
+            <textarea class="input" cols="50" rows="10"></textarea>
             <button onclick={handlePostClick}>Post</button>
         </div>
         <template for:each={notes} for:item="note">
@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="body">
-                    <p>{note.Data__c}</p>
+                    <pre>{note.Data__c}</pre>
                 </div>
             </div>
         </template>
