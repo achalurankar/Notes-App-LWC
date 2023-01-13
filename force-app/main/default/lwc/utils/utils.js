@@ -16,4 +16,14 @@ export default class Utils {
         SUCCESS : '#50C878',
         ERROR : '#DC3545'
     };
+
+    static startPolling(apexMethod, callback) {
+        let oldData = null
+        window.setInterval(async function() {
+            let response = await apexMethod();
+            if(!oldData || oldData.length != response.length) {
+                callback(response)
+            }
+        }, 3000)
+    }
 }

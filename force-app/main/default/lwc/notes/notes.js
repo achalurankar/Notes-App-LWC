@@ -10,18 +10,9 @@ export default class Notes extends LightningElement {
     @track notes;
 
     connectedCallback(){
-        this.loadNotes();
-    }
-
-    loadNotes() {
-        getNotes()
-            .then(result => {
-                this.notes = result;
-                // log(result, true);
-            })
-            .catch(error => {
-                Utils.log(error, true);
-            })
+        Utils.startPolling(getNotes, (notes) => {
+            this.notes = notes;
+        })
     }
 
     handleCopyToClipboard(event) {
