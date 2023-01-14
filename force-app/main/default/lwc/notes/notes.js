@@ -11,8 +11,9 @@ export default class Notes extends LightningElement {
 
     connectedCallback(){
         Utils.startPolling(getNotes, (notes) => {
+            console.log(JSON.stringify(notes));
             this.notes = notes;
-        })
+        }, true)
     }
 
     handleCopyToClipboard(event) {
@@ -33,13 +34,7 @@ export default class Notes extends LightningElement {
         this.postNote(data, 'insert');
     }
 
-    postNote(data, action) {
-        manageNote({ data : data, action : action })
-            .then(result => {
-                // log(result, true);
-            })
-            .catch(error => {
-                Utils.log(error, true);
-            });
+    async postNote(data, action) {
+        await manageNote({ data : data, action : action });
     }
 }
