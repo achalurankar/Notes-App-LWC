@@ -25,6 +25,7 @@ export default class Notes extends LightningElement {
     handleDeleteClick(event) {
         var id = event.currentTarget.dataset.id;
         this.postNote(id, 'delete');
+        this.notes = this.notes.filter((note) => note.Id != id)
     }
 
     handlePostClick() {
@@ -32,6 +33,9 @@ export default class Notes extends LightningElement {
         let data = inp.value;
         inp.value = "";
         this.postNote(data, 'insert');
+        this.notes.unshift({
+            Data__c: data
+        })
     }
 
     async postNote(data, action) {
