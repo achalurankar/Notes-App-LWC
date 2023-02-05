@@ -1,3 +1,3 @@
 <aura:application>
-    <c:notes />
+    <c:notesEnhanced />
 </aura:application>

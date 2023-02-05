@@ -1,0 +1,8 @@
+.note-heading {
+    margin: 10px;
+    font-size: 15px;
+    display: flex;
+    justify-content: left;
+    font-family: sans-serif;
+    cursor: pointer;
+}

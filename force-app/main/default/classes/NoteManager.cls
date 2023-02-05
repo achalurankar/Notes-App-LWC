@@ -4,9 +4,8 @@ global class NoteManager{
     @AuraEnabled
     @HttpGet
     global static List<Note__c> getNotes(){
-        return [SELECT Id, Name, Data__c FROM Note__c ORDER BY LastModifiedDate];
+        return [SELECT Id, Name, Title__c, Is_Synced__c, Data__c FROM Note__c ORDER BY LastModifiedDate DESC];
     }
-    
     
     @AuraEnabled
     @HttpPost
@@ -20,6 +19,7 @@ global class NoteManager{
                 note.Id = data;
                 delete note;
             }
+            note.Is_Synced__c = true;
             return new Wrapper(note.Id, true, action + ' successful');
         } catch(Exception e){
             return new Wrapper(null, false, e.getMessage());

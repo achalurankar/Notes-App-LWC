@@ -1,36 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>*</members>
+        <members>NoteManager</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>*</members>
-        <name>ApexComponent</name>
+        <members>Note__c</members>
+        <name>CustomObject</name>
     </types>
     <types>
-        <members>*</members>
-        <name>ApexPage</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ApexTestSuite</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ApexTrigger</name>
-    </types>
-    <types>
-        <members>*</members>
+        <members>notesApp</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
-        <members>*</members>
+        <members>notesEnhanced</members>
+        <members>notesBar</members>
+        <members>notePreview</members>
+        <members>noteEditor</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
-        <members>*</members>
-        <name>StaticResource</name>
+        <members>noteSelectedChannel</members>
+        <name>LightningMessageChannel</name>
     </types>
     <version>52.0</version>
 </Package>
