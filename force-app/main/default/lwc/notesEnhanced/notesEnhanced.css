@@ -1,0 +1,18 @@
+.app {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    height: 100vh;
+    margin: 10px;
+}
+
+.sidebar {
+    width: 20%;
+    height: auto;
+}
+
+.note {
+    height: auto;
+    width: 100%;
+    padding: 10px;
+}

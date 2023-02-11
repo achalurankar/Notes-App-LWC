@@ -1,0 +1,14 @@
+<template>
+    <div class="note-editor">
+        <div class="title">
+            <div class="slds-form-element">
+                <div class="slds-form-element__control">
+                    <input type="text" id="text-input-id-47" class="slds-input" oninput={handleTitleChange} value={note.title} />
+                </div>
+            </div>
+        </div>
+        <div class="page">
+            <textarea oninput={handleTextAreaChange}>{note.data}</textarea>
+        </div>
+    </div>
+</template>

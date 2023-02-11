@@ -1,0 +1,35 @@
+.app {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    height: 100vh;
+}
+
+.sidebar {
+    background-color: chartreuse;
+    width: 20%;
+    height: auto;
+}
+
+.note {
+    background-color: cadetblue;
+    height: auto;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+input {
+    width: 30%;
+    height: auto;
+	border: none;
+	height: 30px;
+	padding-left: 5px;
+	font-size: 15px;
+	font-family: sans-serif;
+}
+
+input:focus {
+    outline: none;
+}
