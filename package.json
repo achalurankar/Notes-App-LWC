@@ -14,7 +14,8 @@
     "prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
     "postinstall": "husky install",
     "precommit": "lint-staged",
-    "deploy" : "sfdx force:source:deploy -x manifest/package.xml"
+    "deploy" : "sfdx force:source:deploy -x manifest/package.xml",
+    "validate" : "sfdx force:source:deploy --checkonly -x manifest/package.xml"
   },
   "devDependencies": {
     "@lwc/eslint-plugin-lwc": "^1.0.1",

@@ -3,35 +3,41 @@ global class NoteManager{
     
     @AuraEnabled
     @HttpGet
-    global static List<Note__c> getNotes(){
-        return [SELECT Id, Name, Title__c, Is_Synced__c, Data__c FROM Note__c ORDER BY LastModifiedDate DESC];
+    global static List<NoteWrapper> getNotes(){
+        List<Note__c> notes = [SELECT Id, Name, Title__c, Is_Synced__c, Data__c FROM Note__c ORDER BY LastModifiedDate DESC];
+        List<NoteWrapper> notesToReturn = new List<NoteWrapper>();
+        for(Note__c note : notes) {
+            notesToReturn.add(new NoteWrapper(note));
+        }
+        return notesToReturn;
     }
     
     @AuraEnabled
     @HttpPost
-    global static Wrapper manageNote(string data, string action){
+    global static ResponseWrapper manageNote(string payload, string action){
         try{
-            Note__c note = new Note__c();
+            NoteWrapper wrapper = NoteWrapper.parse(payload);
+            Note__c note = wrapper.getObject();
             if(action == 'insert') {
-                note.Data__c = data;
+                note.Title__c = 'New Page';
                 insert note;
-            } else if(action == 'delete') {    
-                note.Id = data;
+            } else if(action == 'delete') {
                 delete note;
+            } else if(action == 'update') {
+                update note;
             }
-            note.Is_Synced__c = true;
-            return new Wrapper(note.Id, true, action + ' successful');
+            return new ResponseWrapper(note.Id, true, action + ' successful');
         } catch(Exception e){
-            return new Wrapper(null, false, e.getMessage());
+            return new ResponseWrapper(null, false, e.getMessage());
         }
     }
     
-    global class Wrapper {
+    global class ResponseWrapper {
         @AuraEnabled global string id;
         @AuraEnabled global boolean isSuccess;
         @AuraEnabled global string message;
         
-        public Wrapper(string id, boolean isSuccess, string message){
+        public ResponseWrapper(string id, boolean isSuccess, string message){
             this.id = id;
             this.isSuccess = isSuccess;
             this.message = message; 
