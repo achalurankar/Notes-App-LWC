@@ -1,6 +1,7 @@
 <template>
     <div class="app">
         <div class="sidebar">
+            <c-create-note onnotecreate={handleNoteCreate}></c-create-note>
             <c-notes-bar notes={notes}></c-notes-bar>
         </div>
         <div class="note">

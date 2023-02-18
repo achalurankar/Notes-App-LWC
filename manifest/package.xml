@@ -18,6 +18,7 @@
         <members>notesBar</members>
         <members>notePreview</members>
         <members>noteEditor</members>
+        <members>createNote</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
