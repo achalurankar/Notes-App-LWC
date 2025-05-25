@@ -1,5 +1,5 @@
 @RestResource(urlMapping='/Notes/*')
-global class NoteManager{
+global virtual class NoteManager{
     
     @AuraEnabled
     @HttpGet
@@ -19,7 +19,6 @@ global class NoteManager{
             NoteWrapper wrapper = NoteWrapper.parse(payload);
             Note__c note = wrapper.getObject();
             if(action == 'insert') {
-                note.Title__c = 'New Page';
                 insert note;
             } else if(action == 'delete') {
                 delete note;
